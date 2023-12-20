@@ -1,15 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
-SCHEMA_NAME="$BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAME"
+SCHEMA_NAMEs="$BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAMES"
 
 echo "--- :1234: Starting checking kafka schema"
 
-echo "--- :5678: ${SCHEMA_NAME}"
+echo "--- :5678: ${SCHEMA_NAMES}"
 
 files=$(ls)
 
 # Output the list of files
 echo "Current files in the directory:"
 echo "$files"
-echo env

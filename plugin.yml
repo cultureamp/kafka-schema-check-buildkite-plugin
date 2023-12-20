@@ -6,6 +6,6 @@ author: https://github.com/cultureamp
 requirements: []
 configuration:
   properties:
-    schema-name:
-      type: string
+    schema-names:
+      type: array
   additionalProperties: false
