@@ -6,7 +6,7 @@ load "$BATS_PLUGIN_PATH/load.bash"
 # export BUILDKITE_AGENT_STUB_DEBUG=/dev/tty
 
 @test "Executes kafka schema check when command has successed" {
-  export BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_FILE_NAME="test.v1"
+  export BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAME="test.v1"
 
   run "$PWD/hooks/post-command"
 
