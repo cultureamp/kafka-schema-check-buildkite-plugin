@@ -7,4 +7,4 @@ echo "--- :1234: Starting checking kafka schema"
 
 echo "--- :5678: ${SCHEMA_NAME}"
 
-echo "--- :91011: ${BUILDKITE_PLUGIN_NAME_CONFIG_OPTION_0}"
+echo "--- :91011: ${env}"

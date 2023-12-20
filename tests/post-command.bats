@@ -7,7 +7,6 @@ load "$BATS_PLUGIN_PATH/load.bash"
 
 @test "Executes kafka schema check when command has successed" {
   export BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAME="test.v1"
-  export BUILDKITE_PLUGIN_NAME_CONFIG_OPTION_0="abc"
 
   run "$PWD/hooks/post-command"
 
