@@ -1,11 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-# SCHEMA_NAMES="$BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAMES"
-echo $BUILDKITE_PLUGIN_CONFIGURATION["schema-names"]
+SCHEMA_NAMES="$BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAMES"
+
 echo "--- :1234: Starting checking kafka schema"
 
-# echo "--- :5678: ${SCHEMA_NAMES}"
+echo "--- :5678: ${SCHEMA_NAMES}"
 
 files=$(ls)
 
