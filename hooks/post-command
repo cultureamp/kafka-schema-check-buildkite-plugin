@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-SCHEMA_NAME="$BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_FILE_NAME"
+SCHEMA_NAME="$BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAME"
 
 echo "--- :1234: Starting checking kafka schema"
 
