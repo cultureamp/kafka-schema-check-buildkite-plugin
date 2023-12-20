@@ -1,0 +1,12 @@
+name: Kafka Schema Check
+description: >
+  Check if your consumed service has different version of Avro schema in your
+  local against our Kafka Schema Registry
+author: https://github.com/cultureamp
+requirements:
+  - docker
+configuration:
+  properties:
+    schema-name:
+      type: string
+  additionalProperties: false

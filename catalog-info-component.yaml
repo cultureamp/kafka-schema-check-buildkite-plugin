@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: kafka-schema-check-buildkite-plugin
+  description: |
+    Buildkite plugin to run kafka schema check ECS task
+  tags:
+    - camp-platform
+    - data-internal-use-only
+    - users-internal
+  annotations:
+    github.com/project-slug: cultureamp/kafka-schema-check-results-buildkite-plugin
+    github.com/team-slug: cultureamp/core-services
+spec:
+  type: library
+  owner: core-services
+  lifecycle: experimental
