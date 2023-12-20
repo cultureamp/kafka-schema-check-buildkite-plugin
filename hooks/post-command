@@ -7,4 +7,8 @@ echo "--- :1234: Starting checking kafka schema"
 
 echo "--- :5678: ${SCHEMA_NAME}"
 
-echo "--- :91011: ${env}"
+files=$(ls)
+
+# Output the list of files
+echo "Current files in the directory:"
+echo "$files"
