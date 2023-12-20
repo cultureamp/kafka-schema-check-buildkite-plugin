@@ -1,11 +1,31 @@
 #!/bin/bash
+
 set -euo pipefail
 
-SCHEMA_NAMES="$BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAMES"
 
-echo "--- :1234: Starting checking kafka schema"
+schema_names_from_env=()
 
-echo "--- :5678: ${SCHEMA_NAMES}"
+prefix="BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAMES"
+
+# Loop through all environment variables
+for var in $(env | grep "^$prefix"); do
+  IFS="=" read -ra parts <<< "$var"
+
+  schema_names_from_env+=(${parts[1]})
+done
+
+schema_names=""
+for ((i = 0; i < ${#schema_names_from_env[@]}; i++)); do
+  if [ "$i" -eq 0 ]; then
+    schema_names="${schema_names_from_env[i]}"
+  else
+    schema_names+=",${schema_names_from_env[i]}"
+  fi
+done
+
+
+echo "Array as a comma-separated string>??"
+echo "$schema_names"
 
 files=$(ls)
 
