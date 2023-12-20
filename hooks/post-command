@@ -6,3 +6,5 @@ SCHEMA_NAME="$BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAME"
 echo "--- :1234: Starting checking kafka schema"
 
 echo "--- :5678: ${SCHEMA_NAME}"
+
+echo "--- :91011: ${BUILDKITE_PLUGIN_NAME_CONFIG_OPTION_0}"
