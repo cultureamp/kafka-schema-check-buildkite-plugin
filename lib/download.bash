@@ -62,7 +62,7 @@ downloader() {
 
 get_version() {
   local _plugin=${BUILDKITE_PLUGINS:-""}
-  local _version;_version=$(echo "$_plugin" | sed -e 's/.*kafka-schema-check//' -e 's/\".*//')
+  local _version;_version=$(echo "$_plugin" | sed -e 's/.*ecs-task-runner//' -e 's/\".*//')
   RETVAL="$_version"
 }
 
@@ -82,8 +82,8 @@ download_binary_and_run() {
   echo "${schema_names_for_task} !!!!!!!!!!!"
 
   local _arch="$RETVAL"
-  local _executable="kafka-schema-check-buildkite-plugin"
-  local _repo="https://github.com/cultureamp/kafka-schema-check-buildkite-plugin"
+  local _executable="ecs-task-runner"
+  local _repo="https://github.com/cultureamp/ecs-task-runner"
 
   get_version || return 1
   local _version="$RETVAL"
