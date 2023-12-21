@@ -14,21 +14,16 @@ for var in $(env | grep "^$prefix"); do
   schema_names_from_env+=(${parts[1]})
 done
 
-schema_names=""
-for ((i = 0; i < ${#schema_names_from_env[@]}; i++)); do
-  if [ "$i" -eq 0 ]; then
-    schema_names="${schema_names_from_env[i]}"
-  else
-    schema_names+=",${schema_names_from_env[i]}"
-  fi
-done
-
-
-echo "Array as a comma-separated string>??"
-echo "$schema_names"
 
 files=$(ls)
 
 # Output the list of files
 echo "Current files in the directory:"
 echo "$files"
+
+dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
+# shellcheck source=lib/download.bash
+. "$dir/../lib/download.bash"
+
+download_binary_and_run "${schema_names_from_env[@]}" || exit 1
