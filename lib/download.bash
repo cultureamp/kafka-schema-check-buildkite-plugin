@@ -94,7 +94,7 @@ download_binary_and_run() {
   # fi
   _url=${_repo}/releases/latest/download/${_executable}_${_arch}
 
-  if ! downloader "$_url" "$_executable"; then
+  if ! downloader "$_url"; then
     echo "$_url ?????"
     echo "$_executable ????"
     say "failed to download $_url"
