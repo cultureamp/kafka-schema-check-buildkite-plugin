@@ -85,14 +85,14 @@ download_binary_and_run() {
   local _executable="ecs-task-runner"
   local _repo="https://github.com/cultureamp/ecs-task-runner"
 
-  get_version || return 1
-  local _version="$RETVAL"
+  # get_version || return 1
+  # local _version="$RETVAL"
 
-  if [ -z "${_version}" ]; then
-    _url=${_repo}/releases/latest/download/${_executable}_${_arch}
-  else
-    _url=${_repo}/releases/download/${_version:1}/${_executable}_${_arch}
-  fi
+  # if [ -z "${_version}" ]; then
+  #   _url=${_repo}/releases/latest/download/${_executable}_${_arch}
+  # else
+  # fi
+  _url=${_repo}/releases/download/${_version:1}/${_executable}_${_arch}
 
   if ! downloader "$_url" "$_executable"; then
     say "failed to download $_url"
