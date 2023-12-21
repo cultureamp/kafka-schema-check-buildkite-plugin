@@ -79,7 +79,7 @@ download_binary_and_run() {
     fi
   done
 
-  echo "${schema_names_for_task} !!!!!!!!!!!"
+  echo "${schema_names_for_task} ????"
 
   local _arch="$RETVAL"
   local _executable="ecs-task-runner"
