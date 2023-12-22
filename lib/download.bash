@@ -68,23 +68,26 @@ get_version() {
 
 foundFiles=()
 
-findFileByName() {
+findFilesByExtension() {
   local directory="$1"
-  local targetFileName="$2"
+  local extension="$2"
 
   # Loop through all files and directories in the current directory
   for item in "$directory"/*; do
-    if [ -f "$item" ] && [ "$(basename "$item")" = "$targetFileName.avsc" ]; then
-      echo "File '$targetFileName' found: $item"
-      foundFiles+=("$item")  # Store the file path in the array
-      return 0  # Stop searching once the file is found
+    if [ -f "$item" ] && [ "${item##*.}" = "$extension" ]; then
+        echo "File with extension '.$extension' found: $item"
+        foundFiles+=("$item")  # Store the file path in the array
     elif [ -d "$item" ]; then
-      # Recursively search in subdirectories
-      findFileByName "$item" "$targetFileName"
+        # Recursively search in subdirectories
+        findFilesByExtension "$item" "$extension"
     fi
   done
+}
 
-  return 1
+# Function to calculate MD5 digest for a file
+calculateMD5() {
+  local file="$1"
+  md5sum "$file" | awk '{print $1}'  # Extract the MD5 digest
 }
 
 download_binary_and_run() {
@@ -98,8 +101,7 @@ download_binary_and_run() {
     # else
     #   schema_names_for_task+=",${schema_names[i]}"
     # fi
-    foundFiles=() 
-    findFileByName "." "${schema_names[i]}"
+    findFilesByExtension "." "avsc"
   done
 
   echo "Found files: ${foundFiles} !!!!!!"

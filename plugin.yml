@@ -5,7 +5,5 @@ description: >
 author: https://github.com/cultureamp
 requirements: []
 configuration:
-  properties:
-    schema-names:
-      type: array
+  properties: {}
   additionalProperties: false

@@ -12,7 +12,4 @@ steps:
     # the docker-compose plugin may be used here instead of a command
     plugins:
       - cultureamp/kafka-schema-check#v0.1.0:
-          schema-names:
-            - "account-data.accounts.v1-value"
-            - "account-value"
 ```
