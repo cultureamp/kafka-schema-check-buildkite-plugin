@@ -104,7 +104,7 @@ download_binary_and_run() {
     findFilesByExtension "." "avsc"
   done
 
-  echo "Found files: ${foundFiles} !!!!!!"
+  # echo "Found files: ${foundFiles} !!!!!!"
 
   local _arch="$RETVAL"
   local _executable="ecs-run-task"
