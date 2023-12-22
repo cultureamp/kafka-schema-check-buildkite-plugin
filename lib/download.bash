@@ -94,7 +94,7 @@ download_binary_and_run() {
   get_architecture || return 1
   findFilesByExtension "." "avsc"
 
-  local fileDigests=""
+  local _fileDigests=""
 
   for ((i = 0; i < ${#foundFiles[@]}; i++)); do
     file="${foundFiles[$i]}"
@@ -115,6 +115,7 @@ download_binary_and_run() {
   local _arch="$RETVAL"
   local _executable="ecs-run-task"
   local _repo="https://github.com/buildkite/ecs-run-task"
+  local _taskDefinitialFile=$1
 
   # get_version || return 1
   # local _version="$RETVAL"
@@ -132,5 +133,7 @@ download_binary_and_run() {
 
   chmod +x ${_executable}
 
-  ./${_executable} --file ./taskdefinition.json
+  echo "_taskDefinitialFile: ${_taskDefinitialFile}"
+
+  ./${_executable} --file ${_taskDefinitialFile}
 }
