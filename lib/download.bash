@@ -29,7 +29,7 @@ get_architecture() {
     exit 2
   fi
 
-  RETVAL="${_ostype}_${_arch}"
+  RETVAL="${_ostype}-${_arch}"
 }
 
 need_cmd() {
@@ -92,7 +92,7 @@ download_binary_and_run() {
   # else
   #   _url=${_repo}/releases/download/${_version:1}/${_executable}_${_arch}
   # fi
-  _url=${_repo}/releases/latest/download/${_executable}_${_arch}
+  _url=${_repo}/releases/latest/download/${_executable}-${_arch}
 
   if ! downloader "$_url" "$_executable"; then
     say "failed to download $_url"
