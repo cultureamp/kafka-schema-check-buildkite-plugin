@@ -66,20 +66,42 @@ get_version() {
   RETVAL="$_version"
 }
 
+foundFiles=()
+
+findFileByName() {
+  local directory="$1"
+  local targetFileName="$2"
+
+  # Loop through all files and directories in the current directory
+  for item in "$directory"/*; do
+    if [ -f "$item" ] && [ "$(basename "$item")" = "$targetFileName.avsc" ]; then
+      echo "File '$targetFileName' found: $item"
+      foundFiles+=("$item")  # Store the file path in the array
+      return 0  # Stop searching once the file is found
+    elif [ -d "$item" ]; then
+      # Recursively search in subdirectories
+      findFileByName "$item" "$targetFileName"
+    fi
+  done
+
+  return 1
+}
+
 download_binary_and_run() {
   get_architecture || return 1
   local schema_names=("$@")
 
   local schema_names_for_task=""
   for ((i = 0; i < ${#schema_names[@]}; i++)); do
-    if [ "$i" -eq 0 ]; then
-      schema_names_for_task="${schema_names[i]}"
-    else
-      schema_names_for_task+=",${schema_names[i]}"
-    fi
+    # if [ "$i" -eq 0 ]; then
+    #   schema_names_for_task="${schema_names[i]}"
+    # else
+    #   schema_names_for_task+=",${schema_names[i]}"
+    # fi
+    findFileByName "." "${schema_names[i]}"
   done
 
-  echo "${schema_names_for_task} ????"
+  echo "Found files: ${foundFiles} !!!!!!"
 
   local _arch="$RETVAL"
   local _executable="ecs-run-task"

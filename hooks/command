@@ -14,13 +14,6 @@ for var in $(env | grep "^$prefix"); do
   schema_names_from_env+=(${parts[1]})
 done
 
-
-files=$(ls)
-
-# Output the list of files
-echo "Current files in the directory:"
-echo "$files"
-
 dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # shellcheck source=lib/download.bash
