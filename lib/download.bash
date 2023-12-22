@@ -106,8 +106,8 @@ download_binary_and_run() {
   # done
 
   for ((i = 0; i < ${#foundFiles[@]}; i++)); do
-    md5=$(calculateMD5 "$file")
-    filename=$(basename "$file")
+    md5=$(calculateMD5 "$foundFiles[i]")
+    filename=$(basename "$foundFiles[i]")
     if [ "$i" -eq 0 ]; then
       fileDigests+="$filename: $md5"
     else
