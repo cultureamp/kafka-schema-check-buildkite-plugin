@@ -67,7 +67,6 @@ get_version() {
 }
 
 foundFiles=()
-fileDigests=""
 
 findFilesByExtension() {
   local directory="$1"
@@ -95,15 +94,7 @@ download_binary_and_run() {
   get_architecture || return 1
   findFilesByExtension "." "avsc"
 
-  local schema_names_for_task=""
-  # for ((i = 0; i < ${#schema_names[@]}; i++)); do
-    # if [ "$i" -eq 0 ]; then
-    #   schema_names_for_task="${schema_names[i]}"
-    # else
-    #   schema_names_for_task+=",${schema_names[i]}"
-    # fi
-    
-  # done
+  local fileDigests=""
 
   for ((i = 0; i < ${#foundFiles[@]}; i++)); do
     file="${foundFiles[$i]}"
@@ -141,5 +132,5 @@ download_binary_and_run() {
 
   chmod +x ${_executable}
 
-  # ./${_executable}
+  ./${_executable} --file ./taskdefinition.json
 }
