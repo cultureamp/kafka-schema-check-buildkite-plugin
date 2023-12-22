@@ -98,6 +98,7 @@ download_binary_and_run() {
     # else
     #   schema_names_for_task+=",${schema_names[i]}"
     # fi
+    foundFiles=() 
     findFileByName "." "${schema_names[i]}"
   done
 
