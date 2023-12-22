@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: kafka-schema-check-buildkite-plugin-location
+  tags:
+    - camp-platform
+spec:
+  targets:
+    - ./catalog-info-component.yaml

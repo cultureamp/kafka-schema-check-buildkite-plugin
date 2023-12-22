@@ -1,0 +1,11 @@
+{
+  "containerDefinitions": [
+    {
+        "essential": true,
+        "image": "226140413739.dkr.ecr.us-west-2.amazonaws.com/development/kafka-schema-check:latest",
+        "memory": 100,
+        "name": "kafka-schema-check"
+    }
+  ],
+  "family": "kafka-schema-check"
+}

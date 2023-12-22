@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -euo pipefail
+
+
+# schema_names_from_env=()
+
+# prefix="BUILDKITE_PLUGIN_KAFKA_SCHEMA_CHECK_SCHEMA_NAMES"
+
+# # Loop through all environment variables
+# for var in $(env | grep "^$prefix"); do
+#   IFS="=" read -ra parts <<< "$var"
+
+#   schema_names_from_env+=(${parts[1]})
+# done
+
+dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
+# shellcheck source=lib/download.bash
+. "$dir/../lib/download.bash"
+
+download_binary_and_run "$dir/../lib/taskdefinition.json" || exit 1
