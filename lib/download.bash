@@ -67,7 +67,7 @@ get_version() {
 }
 
 foundFiles=()
-fileDigests=()
+fileDigests=""
 
 findFilesByExtension() {
   local directory="$1"
@@ -76,11 +76,11 @@ findFilesByExtension() {
   # Loop through all files and directories in the current directory
   for item in "$directory"/*; do
     if [ -f "$item" ] && [ "${item##*.}" = "$extension" ]; then
-        echo "File with extension '.$extension' found: $item"
-        foundFiles+=("$item")  # Store the file path in the array
+    echo "File with extension '.$extension' found: $item"
+    foundFiles+=("$item")  # Store the file path in the array
     elif [ -d "$item" ]; then
-        # Recursively search in subdirectories
-        findFilesByExtension "$item" "$extension"
+      # Recursively search in subdirectories
+      findFilesByExtension "$item" "$extension"
     fi
   done
 }
@@ -105,17 +105,19 @@ download_binary_and_run() {
     
   # done
 
-  for file in "${foundFiles[@]}"; do
+  for ((i = 0; i < ${#foundFiles[@]}; i++)); do
     md5=$(calculateMD5 "$file")
     filename=$(basename "$file")
-    fileDigests["$filename"]="$md5"
+    if [ "$i" -eq 0 ]; then
+      fileDigests+="$filename: $md5"
+    else
+      fileDigests+=",$filename: $md5"
+    fi
   done
 
   # Print the file MD5 digests for ".avsc" files
   echo "File MD5 Digests for all found '.avsc' files:"
-  for filename in "${!fileDigests[@]}"; do
-    echo "$filename: ${fileDigests[$filename]}"
-  done
+  echo "fileDigests: ${fileDigests}"
 
   local _arch="$RETVAL"
   local _executable="ecs-run-task"
