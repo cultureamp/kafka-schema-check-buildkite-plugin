@@ -82,8 +82,8 @@ download_binary_and_run() {
   echo "${schema_names_for_task} ????"
 
   local _arch="$RETVAL"
-  local _executable="ecs-task-runner"
-  local _repo="https://github.com/cultureamp/ecs-task-runner"
+  local _executable="ecs-run-task"
+  local _repo="https://github.com/buildkite/ecs-run-task"
 
   # get_version || return 1
   # local _version="$RETVAL"
@@ -95,8 +95,6 @@ download_binary_and_run() {
   _url=${_repo}/releases/latest/download/${_executable}_${_arch}
 
   if ! downloader "$_url"; then
-    echo "$_url ?????"
-    echo "$_executable ????"
     say "failed to download $_url"
     exit 1
   fi
