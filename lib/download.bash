@@ -67,6 +67,7 @@ get_version() {
 }
 
 foundFiles=()
+fileDigests=()
 
 findFilesByExtension() {
   local directory="$1"
@@ -104,7 +105,17 @@ download_binary_and_run() {
     
   # done
 
-  echo "Found files: ${foundFiles} !!!!!!"
+  for file in "${foundFiles[@]}"; do
+    md5=$(calculateMD5 "$file")
+    filename=$(basename "$file")
+    fileDigests["$filename"]="$md5"
+  done
+
+  # Print the file MD5 digests for ".avsc" files
+  echo "File MD5 Digests for all found '.avsc' files:"
+  for filename in "${!fileDigests[@]}"; do
+    echo "$filename: ${fileDigests[$filename]}"
+  done
 
   local _arch="$RETVAL"
   local _executable="ecs-run-task"
