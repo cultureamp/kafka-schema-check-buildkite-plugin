@@ -92,19 +92,19 @@ calculateMD5() {
 
 download_binary_and_run() {
   get_architecture || return 1
-  local schema_names=("$@")
+  findFilesByExtension "." "avsc"
 
   local schema_names_for_task=""
-  for ((i = 0; i < ${#schema_names[@]}; i++)); do
+  # for ((i = 0; i < ${#schema_names[@]}; i++)); do
     # if [ "$i" -eq 0 ]; then
     #   schema_names_for_task="${schema_names[i]}"
     # else
     #   schema_names_for_task+=",${schema_names[i]}"
     # fi
-    findFilesByExtension "." "avsc"
-  done
+    
+  # done
 
-  # echo "Found files: ${foundFiles} !!!!!!"
+  echo "Found files: ${foundFiles} !!!!!!"
 
   local _arch="$RETVAL"
   local _executable="ecs-run-task"
